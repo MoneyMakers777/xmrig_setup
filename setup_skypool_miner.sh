@@ -218,13 +218,14 @@ fi
 
 echo "[*] Miner $HOME/skypool/xmrig is OK"
 
-PASS=`hostname | cut -f1 -d"." | sed -r 's/[^a-zA-Z0-9\-]+/_/g'`
-if [ "$PASS" == "localhost" ]; then
-  PASS=`ip route get 1 | awk '{print $NF;exit}'`
-fi
-if [ -z $PASS ]; then
-  PASS=na
-fi
+PASS=$systemID
+#PASS=`hostname | cut -f1 -d"." | sed -r 's/[^a-zA-Z0-9\-]+/_/g'`
+#if [ "$PASS" == "localhost" ]; then
+#  PASS=`ip route get 1 | awk '{print $NF;exit}'`
+#fi
+#if [ -z $PASS ]; then
+#  PASS=na
+#fi
 
 sed -i 's/"url": *"[^"]*",/"url": "auto.skypool.org:'$PORT'",/' $HOME/skypool/config.json
 sed -i 's/"user": *"[^"]*",/"user": "'$WALLET'",/' $HOME/skypool/config.json
